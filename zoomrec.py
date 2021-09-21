@@ -333,7 +333,7 @@ def join(meet_id, meet_pw, duration, description):
         logging.info("Start recording..")
 
         filename = os.path.join(
-            REC_PATH, time.strftime(TIME_FORMAT)) + "-" + description + "-JOIN.mp4"
+            REC_PATH, time.strftime(TIME_FORMAT)) + "-" + description + "-JOIN.mkv"
 
         command = "ffmpeg -nostats -loglevel quiet -f pulse -ac 2 -i 1 -f x11grab -r 30 -s " + resolution + " -i " + \
                   disp + " -acodec pcm_s16le -vcodec libx264rgb -preset ultrafast -crf 0 -threads 0 -async 1 -vsync 1 " + filename
@@ -650,7 +650,7 @@ def join(meet_id, meet_pw, duration, description):
     logging.info("Start recording..")
 
     filename = os.path.join(REC_PATH, time.strftime(
-        TIME_FORMAT) + "-" + description) + ".mp4"
+        TIME_FORMAT) + "-" + description) + ".mkv"
 
     width, height = pyautogui.size()
     resolution = str(width) + 'x' + str(height)

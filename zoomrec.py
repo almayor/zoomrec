@@ -333,7 +333,7 @@ def join(meet_id, meet_pw, duration, description):
         logging.info("Start recording..")
 
         filename = os.path.join(
-            REC_PATH, time.strftime(TIME_FORMAT)) + "-" + description + "-JOIN.mkv"
+            REC_PATH, time.strftime(TIME_FORMAT)) + "-" + description + "-JOIN.mp4"
 
         command = "ffmpeg -nostats -loglevel quiet -f pulse -ac 2 -i 1 -f x11grab -r 30 -s " + resolution + " -i " + \
                   disp + " -acodec pcm_s16le -vcodec libx264rgb -preset ultrafast -crf 0 -threads 0 -async 1 -vsync 1 " + filename

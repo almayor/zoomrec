@@ -503,139 +503,139 @@ def join(meet_id, meet_pw, duration, description):
 
     # Set computer audio
     time.sleep(2)
-    if not join_audio(description):
-        logging.info("Exit!")
-        os.killpg(os.getpgid(zoom.pid), signal.SIGQUIT)
-        if DEBUG:
-            os.killpg(os.getpgid(ffmpeg_debug.pid), signal.SIGQUIT)
-            atexit.unregister(os.killpg)
-        time.sleep(2)
-        join(meet_id, meet_pw, duration, description)
+    # if not join_audio(description):
+    #     logging.info("Exit!")
+    #     os.killpg(os.getpgid(zoom.pid), signal.SIGQUIT)
+    #     if DEBUG:
+    #         os.killpg(os.getpgid(ffmpeg_debug.pid), signal.SIGQUIT)
+    #         atexit.unregister(os.killpg)
+    #     time.sleep(2)
+    #     join(meet_id, meet_pw, duration, description)
 
-    time.sleep(2)
-    logging.info("Enter fullscreen..")
-    show_toolbars()
-    try:
-        x, y = pyautogui.locateCenterOnScreen(
-            os.path.join(IMG_PATH, 'view.png'), confidence=0.9)
-        pyautogui.click(x, y)
-    except TypeError:
-        logging.error("Could not find view!")
-        if DEBUG:
-            pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                TIME_FORMAT) + "-" + description) + "_view_error.png")
+    # time.sleep(2)
+    # logging.info("Enter fullscreen..")
+    # show_toolbars()
+    # try:
+    #     x, y = pyautogui.locateCenterOnScreen(
+    #         os.path.join(IMG_PATH, 'view.png'), confidence=0.9)
+    #     pyautogui.click(x, y)
+    # except TypeError:
+    #     logging.error("Could not find view!")
+    #     if DEBUG:
+    #         pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #             TIME_FORMAT) + "-" + description) + "_view_error.png")
 
-    time.sleep(2)
+    # time.sleep(2)
 
-    fullscreen = False
-    try:
-        x, y = pyautogui.locateCenterOnScreen(
-            os.path.join(IMG_PATH, 'fullscreen.png'), confidence=0.9)
-        pyautogui.click(x, y)
-        fullscreen = True
-    except TypeError:
-        logging.error("Could not find fullscreen!")
-        if DEBUG:
-            pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                TIME_FORMAT) + "-" + description) + "_fullscreen_error.png")
+    # fullscreen = False
+    # try:
+    #     x, y = pyautogui.locateCenterOnScreen(
+    #         os.path.join(IMG_PATH, 'fullscreen.png'), confidence=0.9)
+    #     pyautogui.click(x, y)
+    #     fullscreen = True
+    # except TypeError:
+    #     logging.error("Could not find fullscreen!")
+    #     if DEBUG:
+    #         pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #             TIME_FORMAT) + "-" + description) + "_fullscreen_error.png")
 
-    # TODO: Check for 'Exit Full Screen': already fullscreen -> fullscreen = True
+    # # TODO: Check for 'Exit Full Screen': already fullscreen -> fullscreen = True
 
-    # Screensharing already active
-    if not fullscreen:
-        try:
-            x, y = pyautogui.locateCenterOnScreen(os.path.join(
-                IMG_PATH, 'view_options.png'), confidence=0.9)
-            pyautogui.click(x, y)
-        except TypeError:
-            logging.error("Could not find view options!")
-            if DEBUG:
-                pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                    TIME_FORMAT) + "-" + description) + "_view_options_error.png")
+    # # Screensharing already active
+    # if not fullscreen:
+    #     try:
+    #         x, y = pyautogui.locateCenterOnScreen(os.path.join(
+    #             IMG_PATH, 'view_options.png'), confidence=0.9)
+    #         pyautogui.click(x, y)
+    #     except TypeError:
+    #         logging.error("Could not find view options!")
+    #         if DEBUG:
+    #             pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #                 TIME_FORMAT) + "-" + description) + "_view_options_error.png")
 
-        # Switch to fullscreen
-        time.sleep(2)
-        show_toolbars()
+    #     # Switch to fullscreen
+    #     time.sleep(2)
+    #     show_toolbars()
 
-        logging.info("Enter fullscreen..")
-        try:
-            x, y = pyautogui.locateCenterOnScreen(os.path.join(
-                IMG_PATH, 'enter_fullscreen.png'), confidence=0.9)
-            pyautogui.click(x, y)
-        except TypeError:
-            logging.error("Could not enter fullscreen by image!")
-            if DEBUG:
-                pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                    TIME_FORMAT) + "-" + description) + "_enter_fullscreen_error.png")
-            return
+    #     logging.info("Enter fullscreen..")
+    #     try:
+    #         x, y = pyautogui.locateCenterOnScreen(os.path.join(
+    #             IMG_PATH, 'enter_fullscreen.png'), confidence=0.9)
+    #         pyautogui.click(x, y)
+    #     except TypeError:
+    #         logging.error("Could not enter fullscreen by image!")
+    #         if DEBUG:
+    #             pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #                 TIME_FORMAT) + "-" + description) + "_enter_fullscreen_error.png")
+    #         return
 
-        time.sleep(2)
+    #     time.sleep(2)
 
-    # Screensharing not active
-    screensharing_active = False
-    try:
-        x, y = pyautogui.locateCenterOnScreen(os.path.join(
-            IMG_PATH, 'view_options.png'), confidence=0.9)
-        pyautogui.click(x, y)
-        screensharing_active = True
-    except TypeError:
-        logging.error("Could not find view options!")
-        if DEBUG:
-            pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                TIME_FORMAT) + "-" + description) + "_view_options_error.png")
+    # # Screensharing not active
+    # screensharing_active = False
+    # try:
+    #     x, y = pyautogui.locateCenterOnScreen(os.path.join(
+    #         IMG_PATH, 'view_options.png'), confidence=0.9)
+    #     pyautogui.click(x, y)
+    #     screensharing_active = True
+    # except TypeError:
+    #     logging.error("Could not find view options!")
+    #     if DEBUG:
+    #         pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #             TIME_FORMAT) + "-" + description) + "_view_options_error.png")
 
-    time.sleep(2)
+    # time.sleep(2)
 
-    if screensharing_active:
-        # hide video panel
-        try:
-            x, y = pyautogui.locateCenterOnScreen(os.path.join(
-                IMG_PATH, 'hide_video_panel.png'), confidence=0.9)
-            pyautogui.click(x, y)
-            VIDEO_PANEL_HIDED = True
-        except TypeError:
-            logging.error("Could not hide video panel!")
-            if DEBUG:
-                pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                    TIME_FORMAT) + "-" + description) + "_hide_video_panel_error.png")
-    else:
-        # switch to speaker view
-        show_toolbars()
+    # if screensharing_active:
+    #     # hide video panel
+    #     try:
+    #         x, y = pyautogui.locateCenterOnScreen(os.path.join(
+    #             IMG_PATH, 'hide_video_panel.png'), confidence=0.9)
+    #         pyautogui.click(x, y)
+    #         VIDEO_PANEL_HIDED = True
+    #     except TypeError:
+    #         logging.error("Could not hide video panel!")
+    #         if DEBUG:
+    #             pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #                 TIME_FORMAT) + "-" + description) + "_hide_video_panel_error.png")
+    # else:
+    #     # switch to speaker view
+    #     show_toolbars()
 
-        logging.info("Switch view..")
-        try:
-            x, y = pyautogui.locateCenterOnScreen(
-                os.path.join(IMG_PATH, 'view.png'), confidence=0.9)
-            pyautogui.click(x, y)
-        except TypeError:
-            logging.error("Could not find view!")
-            if DEBUG:
-                pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                    TIME_FORMAT) + "-" + description) + "_view_error.png")
+    #     logging.info("Switch view..")
+    #     try:
+    #         x, y = pyautogui.locateCenterOnScreen(
+    #             os.path.join(IMG_PATH, 'view.png'), confidence=0.9)
+    #         pyautogui.click(x, y)
+    #     except TypeError:
+    #         logging.error("Could not find view!")
+    #         if DEBUG:
+    #             pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #                 TIME_FORMAT) + "-" + description) + "_view_error.png")
 
-        time.sleep(2)
+    #     time.sleep(2)
 
-        try:
-            # speaker view
-            x, y = pyautogui.locateCenterOnScreen(os.path.join(
-                IMG_PATH, 'speaker_view.png'), confidence=0.9)
-            pyautogui.click(x, y)
-        except TypeError:
-            logging.error("Could not switch speaker view!")
-            if DEBUG:
-                pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                    TIME_FORMAT) + "-" + description) + "_speaker_view_error.png")
+    #     try:
+    #         # speaker view
+    #         x, y = pyautogui.locateCenterOnScreen(os.path.join(
+    #             IMG_PATH, 'speaker_view.png'), confidence=0.9)
+    #         pyautogui.click(x, y)
+    #     except TypeError:
+    #         logging.error("Could not switch speaker view!")
+    #         if DEBUG:
+    #             pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #                 TIME_FORMAT) + "-" + description) + "_speaker_view_error.png")
 
-        try:
-            # minimize panel
-            x, y = pyautogui.locateCenterOnScreen(os.path.join(
-                IMG_PATH, 'minimize.png'), confidence=0.9)
-            pyautogui.click(x, y)
-        except TypeError:
-            logging.error("Could not minimize panel!")
-            if DEBUG:
-                pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
-                    TIME_FORMAT) + "-" + description) + "_minimize_error.png")
+    #     try:
+    #         # minimize panel
+    #         x, y = pyautogui.locateCenterOnScreen(os.path.join(
+    #             IMG_PATH, 'minimize.png'), confidence=0.9)
+    #         pyautogui.click(x, y)
+    #     except TypeError:
+    #         logging.error("Could not minimize panel!")
+    #         if DEBUG:
+    #             pyautogui.screenshot(os.path.join(DEBUG_PATH, time.strftime(
+    #                 TIME_FORMAT) + "-" + description) + "_minimize_error.png")
 
     # Move mouse from screen
     pyautogui.moveTo(0, 0)
@@ -650,7 +650,7 @@ def join(meet_id, meet_pw, duration, description):
     logging.info("Start recording..")
 
     filename = os.path.join(REC_PATH, time.strftime(
-        TIME_FORMAT) + "-" + description) + ".mkv"
+        TIME_FORMAT) + "-" + description) + ".mp4"
 
     width, height = pyautogui.size()
     resolution = str(width) + 'x' + str(height)
